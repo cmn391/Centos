@@ -1,0 +1,10 @@
+#!/bin/bash
+x=0
+
+for i in `iostat 1 4 | grep $1 | tail -3 | awk '{print $2}'`
+	do
+	x=$(echo $x + $i | bc)
+	done
+
+resl=$(echo $x/3 | bc)
+echo $resl

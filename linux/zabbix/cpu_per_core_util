@@ -1,0 +1,12 @@
+#!/bin/bash
+core=$2
+type=$1
+
+case $type in
+	iowait) 
+		mpstat -P $core 1 3 | tail -1 | awk '{print $6}'
+		;;
+	idle)
+		mpstat -P $core 1 3 | tail -1 | awk '{print $11}'
+		;;
+esac
